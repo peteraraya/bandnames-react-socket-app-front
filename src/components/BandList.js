@@ -43,8 +43,8 @@ export const BandList = ({ data, votar, descontar, borrar, cambiarNombre }) => {
             <h6 className="text-light">{ i + 1}</h6>
           </td>
           <td>
-            <div class="row">
-              <div class="col-10 p-0">
+            <div className="row">
+              <div className="col-8 p-0">
                 <input
                   className="form-control"
                   value={band.name}
@@ -52,7 +52,7 @@ export const BandList = ({ data, votar, descontar, borrar, cambiarNombre }) => {
                   onBlur={() => onPerdioFoco(band.id, band.name)}
                 />
               </div>
-              <div class="col-1 p-0 mt-1">
+              <div className="col-2 p-0 mt-1">
                 <button
                   onClick={() => votar(band.id)}
                   className="btn btn-success btn-sm"
@@ -60,7 +60,7 @@ export const BandList = ({ data, votar, descontar, borrar, cambiarNombre }) => {
                 + 1
                 </button>
               </div>
-              <div class="col-1 p-0 mt-1">
+              <div className="col-2 p-0 mt-1">
                 <button
                   onClick={() => descontar(band.id)}
                   className="btn btn-danger btn-sm"
