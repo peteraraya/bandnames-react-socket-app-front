@@ -1,38 +1,32 @@
-import React, { useState } from 'react';
+import { useContext, useState } from 'react';
+import { SocketContext } from '../context/SocketContext';
 
-export const BandAdd = ({ crearBanda }) => {
+export const BandAdd = () => {
 
-  const [valor, setValor] = useState('');
+  const [valor, setValor] = useState("");
 
-  const onSubmit = (ev) =>{
+  const { socket } = useContext(SocketContext);
+
+  const onSubmit = (ev) => {
     ev.preventDefault();
 
-    if (valor.trim().length > 0 ) {
-       // TODO: llamar la función para emitir el evento
-
-      console.log(valor);
-      crearBanda(valor);
+    if (valor.trim().length > 0) {
+      socket.emit("agregar-banda", { nombre: valor });
       setValor('');
-    }else{
-      return;
     }
-  }
-
-
-
-
-
+  };
   return (
     <>
-      <h4 className="pb-3">Agregar Banda</h4>
+      <h4>Agregar Banda</h4>
+
       <form onSubmit={onSubmit}>
-        <input 
-              className="form-control mt-2" 
-              placeholder="Nuevo nombre de banda"
-              value={ valor }
-              onChange={(ev) => setValor(ev.target.value) }
-            />
+        <input
+          className="form-control"
+          placeholder="Nuevo nombre de banda"
+          value={valor}
+          onChange={(ev) => setValor(ev.target.value)}
+        />
       </form>
     </>
-  )
-}
+  );
+};
